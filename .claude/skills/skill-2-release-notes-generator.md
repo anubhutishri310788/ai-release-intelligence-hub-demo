@@ -1,7 +1,7 @@
 ---
 name: skill-2-release-generator
 description: Generate complete release documentation package from validated release data. Produces 4 enterprise-grade outputs: customer-facing Release Notes (organized by feature/fix/security category), exactly 100-word Executive Summary (business impact & KPIs), Quality Validation Report (automated checklist), and SEO/GEO Recommendations (keywords, metadata, FAQ). Uses Atlassian Rovo MCP for live Jira/Confluence data, GitHub metadata, and validated release datasets. Trigger this skill whenever you need to generate polished release documentation, prepare marketing collateral from technical release data, create executive communications from release info, or validate release content quality before publication. Do NOT auto-publish; generates only. Professional, enterprise-grade output suitable for customers, partners, and leadership.
-compatibility: Requires Atlassian Rovo MCP (Jira + Confluence access), GitHub API or sample data, validated release dataset from Skill #1
+compatibility: Requires Atlassian MCP Server (Jira + Confluence access), GitHub MCP Server, or sample data; validated release dataset from Skill #1
 ---
 
 # Release Documentation Generator (Skill #2)
@@ -11,6 +11,11 @@ Generate production-ready release documentation packages from validated v2.5 rel
 ## Overview
 
 **Purpose**: Transform technical release metadata into polished, customer-facing documentation and executive communications.
+
+**Data Sources**:
+- GitHub MCP Server (`@modelcontextprotocol/server-github`) — Release metadata, commits, contributors, PRs
+- Atlassian MCP Server (`@modelcontextprotocol/server-atlassian`) — Jira issues, Confluence pages
+- Skill #1 Validation Output — Validated release data and audit trail
 
 **Inputs** (from Skill #1 or live data):
 - Validated release data (version, features, fixes, security updates, release date)
@@ -38,23 +43,26 @@ Generate production-ready release documentation packages from validated v2.5 rel
 
 Before generating outputs, gather validated release data using Skill #1 or live sources.
 
-#### Option A: Use Live Atlassian Rovo MCP
+#### Option A: Use Live MCP Servers
 
-If you have access to Jira and Confluence:
+If you have access to Atlassian (Jira/Confluence) and GitHub MCP servers:
 
 ```
-1. Search Jira for v2.5 release-related issues:
+1. Query Jira via Atlassian MCP Server:
    - Query: project = "Release Intelligence Hub" AND fixVersion = "v2.5"
    - Extract: issue key, summary, type (Feature/Bug/Security), priority, labels
+   - MCP Endpoint: @modelcontextprotocol/server-atlassian
 
-2. Fetch Confluence release notes pages:
+2. Query Confluence via Atlassian MCP Server:
    - Search for pages tagged with "v2.5-release"
    - Extract: draft notes, deprecated features, breaking changes
+   - MCP Endpoint: @modelcontextprotocol/server-atlassian
 
-3. Gather GitHub data:
+3. Fetch GitHub data via GitHub MCP Server:
    - Repository: anubhutishri310788/ai-release-intelligence-hub-demo
    - Tag: v2.5 release
    - Extract: commit count, contributors, PR count, date
+   - MCP Endpoint: @modelcontextprotocol/server-github
 ```
 
 #### Option B: Use Validated Sample Data
@@ -998,9 +1006,9 @@ This skill (Skill #2) **consumes** validated release data from Skill #1:
 - Known issues and workarounds
 
 **If you don't have Skill #1 outputs**, use the sample data provided in this skill or gather data directly from:
-- Jira (via Atlassian Rovo MCP): fixVersion = "v2.5"
-- GitHub releases: https://github.com/anubhutishri310788/ai-release-intelligence-hub-demo/releases/tag/v2.5
-- Confluence: Pages tagged "v2.5-release"
+- Jira (via Atlassian MCP Server): Query `fixVersion = "v2.5"`
+- GitHub (via GitHub MCP Server): Release tag `v2.5` at `anubhutishri310788/ai-release-intelligence-hub-demo`
+- Confluence (via Atlassian MCP Server): Pages tagged "v2.5-release"
 
 ---
 
@@ -1048,8 +1056,11 @@ curl https://api.anthropic.com/v1/messages \
 ## Support & Resources
 
 - **Claude Documentation**: https://docs.anthropic.com
-- **Atlassian Rovo MCP**: https://mcp.atlassian.com
+- **GitHub MCP Server**: https://github.com/modelcontextprotocol/servers/tree/main/src/github
+- **Atlassian MCP Server**: https://github.com/modelcontextprotocol/servers/tree/main/src/atlassian
 - **GitHub Release API**: https://docs.github.com/en/rest/releases
+- **Jira API Documentation**: https://developer.atlassian.com/cloud/jira/rest/v3
+- **Confluence API Documentation**: https://developer.atlassian.com/cloud/confluence/rest/v2
 - **SEO Best Practices**: https://developers.google.com/search/docs
 - **Release Management Resources**: https://www.atlassian.com/team-playbook
 

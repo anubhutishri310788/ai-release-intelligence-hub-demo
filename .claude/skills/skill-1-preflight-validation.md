@@ -29,24 +29,30 @@ Confirm that GitHub releases, Jira epics/tickets, and Confluence release notes a
 ### CONTEXT
 
 #### Data Sources
-1. **GitHub Repository**
+1. **GitHub MCP Server**
    - Repository: `anubhutishri310788/ai-release-intelligence-hub-demo`
-   - Fetch: Release tag, version string, release assets, GitHub Actions status
-   - URL: `https://github.com/anubhutishri310788/ai-release-intelligence-hub-demo`
+   - Data: Release tags, version strings, release assets, GitHub Actions workflow status
+   - MCP Endpoint: `@modelcontextprotocol/server-github`
+   - Authentication: `GITHUB_PERSONAL_ACCESS_TOKEN` environment variable
+   - Web URL: `https://github.com/anubhutishri310788/ai-release-intelligence-hub-demo`
 
-2. **Jira (via Atlassian Rovo MCP)**
-   - Search: Epics linked to release version
-   - Retrieve: Ticket status, resolution, linked PRs, version field
-   - Constraint: Access via MCP server (Atlassian Rovo) — requires live credentials
+2. **Atlassian MCP Server — Jira**
+   - Service: Jira Cloud / Server
+   - Data: Epics, tickets, version fields, issue status, linked PRs, resolution status
+   - MCP Endpoint: `@modelcontextprotocol/server-atlassian`
+   - Query Method: JQL (Jira Query Language)
+   - Authentication: `ATLASSIAN_HOST`, `ATLASSIAN_EMAIL`, `ATLASSIAN_API_TOKEN`
 
-3. **Confluence (via Atlassian Rovo MCP)**
-   - Search: Release notes page for version
-   - Retrieve: Page status, last updated, linked issues, change summary
-   - Constraint: Access via MCP server (Atlassian Rovo) — requires live credentials
+3. **Atlassian MCP Server — Confluence**
+   - Service: Confluence Cloud / Server
+   - Data: Release notes pages, page status, metadata, linked issues, page history
+   - MCP Endpoint: `@modelcontextprotocol/server-atlassian`
+   - Query Method: CQL (Confluence Query Language)
+   - Authentication: `ATLASSIAN_HOST`, `ATLASSIAN_EMAIL`, `ATLASSIAN_API_TOKEN`
 
 #### Prerequisites
-- Live access to GitHub repo (public, no auth required)
-- Active Atlassian Rovo MCP connector (for Jira + Confluence)
+- GitHub MCP Server configured and `GITHUB_PERSONAL_ACCESS_TOKEN` set
+- Atlassian MCP Server configured with `ATLASSIAN_HOST`, `ATLASSIAN_EMAIL`, `ATLASSIAN_API_TOKEN`
 - Release version string in semantic versioning format (v`MAJOR.MINOR` or v`MAJOR.MINOR-PRERELEASE`)
 
 ### CONSTRAINT
@@ -325,10 +331,11 @@ STATUS: Ready for remediation → Ready for release approval
 
 | Issue | Resolution |
 |-------|-----------|
-| Atlassian Rovo MCP not accessible | Verify credentials, check network access to Jira/Confluence Cloud |
-| GitHub repo 404 | Confirm repo visibility, verify branch/tag spelling |
-| Jira query returns no results | Check version field format (e.g., "v2.5" vs "2.5") |
-| Confluence search timeout | Retry with simpler CQL; break into smaller queries |
+| Atlassian MCP Server not accessible | Verify `ATLASSIAN_HOST`, `ATLASSIAN_EMAIL`, `ATLASSIAN_API_TOKEN` environment variables are set correctly |
+| GitHub MCP Server not accessible | Verify `GITHUB_PERSONAL_ACCESS_TOKEN` environment variable is set with valid GitHub PAT |
+| GitHub repo 404 | Confirm repo visibility, verify repository slug matches `anubhutishri310788/ai-release-intelligence-hub-demo` |
+| Jira query returns no results | Check version field format (e.g., "v2.5" vs "2.5"); verify JQL syntax in Jira instance |
+| Confluence search timeout | Retry with simpler CQL; break into smaller queries; check Confluence instance performance |
 | Cross-ref mismatch (e.g., different version strings) | Document inconsistency in FINDINGS; do not assume correct version |
 
 ---
@@ -337,7 +344,7 @@ STATUS: Ready for remediation → Ready for release approval
 
 **Skill ID:** `skill-1-preflight-validation`  
 **Version:** 1.0  
-**Dependencies:** Atlassian Rovo MCP (Jira + Confluence), web_fetch (GitHub)  
+**Dependencies:** GitHub MCP Server, Atlassian MCP Server (Jira + Confluence)  
 **Author:** Release Operations  
-**Last Updated:** 2024-01-18  
+**Last Updated:** 2026-08-16  
 **Enterprise Grade:** ✓ Validated, audit-ready, production use

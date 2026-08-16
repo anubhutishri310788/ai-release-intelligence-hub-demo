@@ -14,6 +14,22 @@ compatibility: Requires Skill #2 documentation output (4 documents)
 
 ---
 
+## Data Sources
+
+**Primary Input Source:**
+- Skill #2 Release Notes Generator output (4 generated documents)
+
+**Upstream Data Sources (for context verification):**
+- GitHub MCP Server (`@modelcontextprotocol/server-github`) — For validating GitHub release links and endpoints referenced in documents
+- Atlassian MCP Server (`@modelcontextprotocol/server-atlassian`) — For validating Jira/Confluence links and references in documents
+
+**Quality Standards Reference:**
+- Internal Release Intelligence Hub enterprise documentation standards
+- Enterprise release management best practices
+- Security and compliance requirements
+
+---
+
 ## Audit Mandate
 
 This skill performs comprehensive quality assurance on generated release documentation before publishing. The auditor operates with full transparency—flagging all issues (minor to critical) and recommending approval only when human review is not required.
@@ -465,6 +481,19 @@ If audit findings contradict Skill #2 output, the discrepancy is **flagged for h
 3. **Repeatable:** Same auditor, same standards across all releases (for consistency)
 4. **Time Estimate:** ~30 minutes per audit (varies by document length and issue density)
 5. **Tool Dependencies:** Requires ability to verify URLs, code examples, and cross-reference sections
+
+---
+
+---
+
+## Metadata
+
+**Skill ID:** `skill-3-quality-auditor`  
+**Version:** 1.0  
+**Dependencies:** Skill #2 Release Notes Generator output; GitHub MCP Server; Atlassian MCP Server (for reference verification)  
+**Author:** Release Quality Assurance  
+**Last Updated:** 2026-08-16  
+**Enterprise Grade:** ✓ Audit-only, zero-modification, production use
 
 ---
 
