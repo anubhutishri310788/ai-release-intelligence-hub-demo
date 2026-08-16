@@ -1,0 +1,13 @@
+{
+  "plugins": {
+    "atlassian": {
+      "enabled": true
+    },
+    "github": {
+      "enabled": true
+    },
+    "gmail": {
+      "enabled": true
+    }
+  }
+}
