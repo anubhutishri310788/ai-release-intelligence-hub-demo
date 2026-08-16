@@ -1,12 +1,15 @@
 {
   "plugins": {
-    "atlassian": {
-      "enabled": true
-    },
     "github": {
       "enabled": true
     },
     "gmail": {
+      "enabled": true
+    },
+    "atlassian": {
+      "enabled": true
+    },
+    "atlassian-twg-cli": {
       "enabled": true
     }
   }
