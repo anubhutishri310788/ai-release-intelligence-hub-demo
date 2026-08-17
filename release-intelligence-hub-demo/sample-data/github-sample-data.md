@@ -1,9 +1,5 @@
 CloudSync v2.5 Release Latest
-@anubhutishri310788 anubhutishri310788 released this 2 days ago
-· 6 commits to main since this release
  v2.5
- 9d3d95e 
-v2.5 Release Commits
 Jira Epic: [KAN-10](https://anubhutishri123.atlassian.net/browse/KAN-10)
 
 This document lists commits included in v2.5:
