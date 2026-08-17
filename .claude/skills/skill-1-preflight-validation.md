@@ -23,7 +23,7 @@ description: Validate GitHub release tags, Jira tickets, and Confluence document
 
 Confirm that GitHub releases, Jira epics/tickets, and Confluence release notes are complete, consistent, and linked before shipping.
 
-**Input:** Release version (e.g., `v2.5`, `v2.5-rc1`)  
+**Input:** Release version v2.5  
 **Output:** Validation report with status, itemized findings, and next steps
 
 ### CONTEXT

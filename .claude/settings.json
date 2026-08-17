@@ -1,3 +1,9 @@
 {
-  "enabledMcpjsonServers": ["github"]
+  "enabledMcpjsonServers": ["github"],
+  "env": {
+    "GITHUB_PERSONAL_ACCESS_TOKEN": "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",
+    "ATLASSIAN_HOST": "https://anubhutishri123.atlassian.net",
+    "ATLASSIAN_EMAIL": "anubhuti.shri123@gmail.com",
+    "ATLASSIAN_API_TOKEN": "ATATT3xFfGF0HX6erZVIkY_ueuX7aRI7PMh5x-0SzoZqTB76HF_F5qBtFWuRuPFqqX5Sl5I3ZCFEuC9t_stOH_Q815z8Py1U1VEx3ew7kzOEsWJuvR66NwExHtiUvYF9d2BH20mPQwPHAkVZYVYjOc98x2Ixk7-TxUNQ3geaehUVpKe6x9j_Ce8=1B08557A"
+  }
 }

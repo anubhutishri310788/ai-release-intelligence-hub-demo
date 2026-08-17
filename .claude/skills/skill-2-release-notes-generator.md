@@ -17,13 +17,13 @@ Generate production-ready release documentation packages from validated v2.5 rel
 - Atlassian MCP Server (`@modelcontextprotocol/server-atlassian`) — Jira issues, Confluence pages
 - Skill #1 Validation Output — Validated release data and audit trail
 
-**Inputs** (from Skill #1 or live data):
+**Inputs** (from Skill #1 or live data v2.5) :
 - Validated release data (version, features, fixes, security updates, release date)
 - GitHub release metadata (commit SHAs, contributors, merged PRs)
 - Jira issues (status, priorities, components)
 - Confluence pages (team notes, known issues, deprecated features)
 
-**Outputs** (4 separate, publishable documents):
+**Outputs** - Always produce all the following outputs (4 separate, publishable documents):
 1. **Release Notes** — Customer-facing, organized by category
 2. **Executive Summary** — Exactly 100 words, business impact focus
 3. **Quality Validation Report** — Automated QA checklist
