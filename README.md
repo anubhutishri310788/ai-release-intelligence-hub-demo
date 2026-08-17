@@ -20,26 +20,24 @@ This manual process is **time-consuming**, **error-prone**, and **delays release
 
 ## The Solution
 
-**Release Intelligent Hub** automates this entire workflow in **7-11 minutes** using three Claude skills:
+**Release Intelligent Hub** automates this entire workflow in **7-11 minutes** using Claude skills:
 
-### Three Specialized Skills
+### Available Skills
 
 1. **Release Pre-Flight Validation**
    - Pulls data from GitHub, Jira, Confluence via MCP
    - Validates completeness and quality
    - Prevents bad data from becoming automated bad data
 
-2. **Release Intelligence Generator**
+2. **Release Documentation**
+   - Combined generation + quality audit skill
    - Generates 4 professional outputs:
      - Release Notes (customer-facing, organized by benefit)
      - Executive Summary (exactly 100 words, business impact)
      - Quality Validation Report (automated checklist)
      - SEO/GEO Recommendations (keywords, metadata, FAQ opportunities)
-   - Customizable for different audiences (Customers, Partners, Internal)
-
-3. **Release Quality Auditor**
+   - Built-in quality audit with approval recommendations
    - Fact-checks generated content against source data
-   - Flags issues before human review
    - Maintains quality gates and brand voice consistency
 
 ---
@@ -73,27 +71,24 @@ STAGE 1: Pre-Flight Validation (2-3 min)
 ├─ READY → Continue
 └─ NEEDS-FIXING → Fix data → Re-run
 ↓
-STAGE 2: Release Intelligence Generator (3-5 min)
+STAGE 2: Generate & Audit Documentation (3-5 min)
 ├─ Pull validated data from all sources
 ├─ Generate Release Notes
 ├─ Generate Executive Summary (100 words)
 ├─ Generate Quality Validation Report
-└─ Generate SEO/GEO Recommendations
-↓
-STAGE 3: Quality Audit (2-3 min)
-├─ Fact-check against source data
-├─ Verify quality gates
+├─ Generate SEO/GEO Recommendations
+├─ Built-in Quality Audit
 └─ Decision: APPROVED / NEEDS-REVIEW / REJECTED
 ├─ APPROVED → Continue
 └─ NEEDS-REVIEW → Human fixes items
 ↓
-STAGE 4: Human Review & Publish (30-60 min)
+STAGE 3: Human Review & Publish (30-60 min)
 ├─ Technical writer approves
 ├─ Make final edits
 └─ Publish to website, email, social media
 
-TOTAL AUTOMATION: 7-11 minutes ⚡
-TOTAL WITH HUMAN: 40-75 minutes
+TOTAL AUTOMATION: 5-8 minutes ⚡
+TOTAL WITH HUMAN: 35-70 minutes
 MANUAL EQUIVALENT: 6-8 hours 📊
 TIME SAVED PER RELEASE: 5-7 hours 🎯
 
@@ -130,9 +125,8 @@ TIME SAVED PER RELEASE: 5-7 hours 🎯
 
 See the `/skills/` folder for complete skill definitions:
 
-- **`skill-1-preflight-validation-mcp.md`** — Validates GitHub, Jira, Confluence data
-- **`skill-2-release-generator-mcp.md`** — Generates 4-part documentation package
-- **`skill-3-quality-auditor-mcp.md`** — Audits quality before human review
+- **`skill-1-preflight-validation.md`** — Validates GitHub, Jira, Confluence data
+- **`release-documentation.md`** — Generates 4-part documentation package with integrated quality audit
 
 ---
 
@@ -163,22 +157,18 @@ See `/sample-data/` for example:
 - **Confluence:** Upload release specification and keep style guide current
 
 ### Step 2: Run Pre-Flight Validation
-1. Copy Skill #1 from `/skills/skill-1-preflight-validation-mcp.md`
+1. Copy Skill from `/skills/skill-1-preflight-validation.md`
 2. Paste into Claude
 3. Provide: Release version, GitHub repo, Jira project, Confluence pages
 4. Claude pulls data and validates
 
-### Step 3: Generate Documentation (If Pre-Flight Passes)
-1. Copy Skill #2 from `/skills/skill-2-release-generator-mcp.md`
+### Step 3: Generate Documentation & Audit (If Pre-Flight Passes)
+1. Copy Skill from `/skills/release-documentation.md`
 2. Paste validated data
 3. Claude generates: Release Notes + Executive Summary + Quality Report + SEO Recommendations
+4. Built-in quality audit flags any issues and provides approval recommendation
 
-### Step 4: Quality Audit
-1. Copy Skill #3 from `/skills/skill-3-quality-auditor-mcp.md`
-2. Paste generated package
-3. Claude audits and flags any issues
-
-### Step 5: Human Review & Publish
+### Step 4: Human Review & Publish
 1. Technical writer reviews flagged items (if any)
 2. Approves and publishes to website, email, social
 3. Done! ✨
@@ -187,7 +177,7 @@ See `/sample-data/` for example:
 
 ## Multi-Audience Support
 
-Run Skill #2 three times with different audiences:
+Run the release-documentation skill three times with different audiences:
 
 RUN 1: Audience = "Customers"
 → Release notes focused on benefits and ease-of-use
@@ -285,11 +275,10 @@ Built during TechWriters Tribe AI Certification Program
 1. ✅ Clone this repository
 2. ✅ Set up your GitHub, Jira, Confluence with sample data
 3. ✅ Test Skill #1 (Pre-Flight Validation) with your data
-4. ✅ Test Skill #2 (Release Generator) with validated data
-5. ✅ Test Skill #3 (Quality Auditor) on generated output
-6. ✅ Run end-to-end with your actual release data
-7. ✅ Customize skills for your team's specific needs
-8. ✅ Integrate into your release process
+4. ✅ Test Release Documentation Skill (Generation + Audit) with validated data
+5. ✅ Run end-to-end with your actual release data
+6. ✅ Customize skills for your team's specific needs
+7. ✅ Integrate into your release process
 
 ---
 
