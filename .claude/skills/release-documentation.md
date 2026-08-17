@@ -8,7 +8,7 @@ compatibility: Requires release dataset from live sources (Jira, GitHub, Conflue
 
 **Role:** Release Documentation Generator + Quality Auditor  
 **Pipeline:** Generate → Audit → Recommend → Output  
-**Input:** Validated release data (v2.5 template or live MCP sources)  
+**Input:** v2.5 release data from `release_v2.5.md`  
 **Outputs:** 
 - 4 publishable documents (Release Notes, Executive Summary, Deployment Guide, API Docs/Breaking Changes)
 - Comprehensive Quality Audit Report (6 quality dimensions, severity-based issue logging)
@@ -16,12 +16,12 @@ compatibility: Requires release dataset from live sources (Jira, GitHub, Conflue
 
 **Constraint:** Generates and audits only; does NOT modify, auto-publish, or publish.
 
-**Output Location:** All generated documentation files must be saved as markdown files in: `generated-outputs/`
-- Release Notes → `generated-outputs/release-notes-[version].md`
-- Executive Summary → `generated-outputs/executive-summary-[version].md`
-- Quality Validation Report → `generated-outputs/quality-validation-report-[version].md`
-- SEO/GEO Recommendations → `generated-outputs/seo-geo-recommendations-[version].md`
-- Quality Audit Report → `generated-outputs/audit-report-[version].md`
+**Output Location (v2.5):** All generated documentation files are saved as markdown files in: `generated-outputs/`
+- Release Notes → `generated-outputs/release-notes-v2.5.md`
+- Executive Summary → `generated-outputs/executive-summary-v2.5.md`
+- Quality Validation Report → `generated-outputs/quality-validation-report-v2.5.md`
+- SEO/GEO Recommendations → `generated-outputs/seo-geo-recommendations-v2.5.md`
+- Quality Audit Report → `generated-outputs/audit-report-v2.5.md`
 
 ---
 
@@ -39,12 +39,14 @@ This skill provides a complete end-to-end workflow for release documentation: ge
 
 ---
 
-## Data Sources
+## Data Sources (v2.5 Release)
 
-**Primary Input Sources:**
-- GitHub MCP Server (`@modelcontextprotocol/server-github`) — Release metadata, commits, contributors, PRs
-- Atlassian MCP Server (`@modelcontextprotocol/server-atlassian`) — Jira issues, Confluence pages
-- Sample Data (if MCP unavailable) — Validated v2.5 template
+**Input Source:**
+- `release_v2.5.md` — v2.5 release commit data (Features, Performance, Fixes, Deprecations)
+
+**Optional MCP Sources:**
+- GitHub MCP Server (`@modelcontextprotocol/server-github`) — Additional v2.5 metadata
+- Atlassian MCP Server (`@modelcontextprotocol/server-atlassian`) — Jira v2.5 issues
 
 **Quality Standards Reference:**
 - Enterprise release management best practices
@@ -53,18 +55,18 @@ This skill provides a complete end-to-end workflow for release documentation: ge
 
 ---
 
-## Phase 1: Gather & Validate Input Data
+## Phase 1: Gather & Validate Input Data (v2.5)
 
-Query release data from your MCP-connected sources:
+Use release data from `release_v2.5.md` and MCP-connected sources:
 
-1. **Jira**: Query for your release version (e.g., `project = "Release Intelligence Hub" AND fixVersion = "v2.5"`)
-   - Extract: issue keys, summaries, types (Feature/Bug/Security), priorities, labels
+1. **release_v2.5.md**: Load v2.5 commit data
+   - Extract: Features, Performance improvements, Bug fixes, Deprecations
    
-2. **Confluence**: Search for release-related pages
-   - Extract: draft notes, deprecated features, breaking changes
-   
-3. **GitHub**: Fetch release data for your target version
+2. **GitHub**: Fetch v2.5 release metadata and contributors
    - Extract: commit count, contributors, PR count, release date
+   
+3. **Jira**: Query for v2.5 issues (optional, if available)
+   - Extract: issue summaries, types, priorities
 
 ---
 
@@ -578,20 +580,19 @@ If docs reference external APIs/services:
 
 ---
 
-## Workflow Integration
+## Workflow Integration (v2.5)
 
-**This skill accepts release data from:**
-- Jira (via Atlassian MCP Server): issues, versions, release notes
-- GitHub (via GitHub MCP Server): commits, contributors, pull requests, releases
-- Confluence (via Atlassian MCP Server): release documentation, notes
-- Sample data provided in Phase 1 (validated v2.5 template)
+**This skill reads release data from:**
+- `release_v2.5.md` — v2.5 commit data (primary source)
+- GitHub (via GitHub MCP Server): additional v2.5 metadata, contributors
+- Jira (via Atlassian MCP Server): v2.5 issues (optional)
 
-**Release data should include:**
-- Version number, release date, status
-- Feature list with impacts and category
-- Bug fixes and performance improvements
-- Security updates and deprecations
-- Known issues and workarounds
+**v2.5 Release data includes:**
+- Features: multi-cloud provider support, unified console, real-time sync
+- Performance: 40% sync speed improvement, reduced API latency, optimized memory
+- Bug fixes: race condition fixes, error handling improvements, sync conflict resolution
+- Deprecations: OAuth 1.0 → OAuth 2.0 migration
+- Release date: August 16, 2026
 
 ---
 
@@ -629,39 +630,32 @@ If docs reference external APIs/services:
 ## Metadata
 
 **Skill ID:** `release-documentation`  
-**Version:** 1.0  
+**Version:** 2.0 (v2.5-specific)  
 **Type:** Generation + Audit Pipeline  
-**Data Sources:** Jira, GitHub, Confluence (via MCP servers) or sample data  
+**Release Target:** v2.5 (August 16, 2026)  
+**Data Source:** `release_v2.5.md` (primary) + optional MCP servers  
 **Author:** Release Intelligence Hub  
-**Last Updated:** August 16, 2026  
+**Last Updated:** August 17, 2026  
 **Enterprise Grade:** ✓ Complete end-to-end release documentation with quality assurance
 
 ---
 
-## Output Instructions
+## Output Instructions (v2.5)
 
 When running this skill in Claude, save all generated outputs as individual markdown files in the `generated-outputs/` folder:
 
 ```bash
-# After running this skill, create and save the following files:
+# v2.5 Release Documentation Output Files:
 
 generated-outputs/
-├── release-notes-[version].md          # Output #1: Release Notes
-├── executive-summary-[version].md      # Output #2: Executive Summary
-├── quality-validation-report-[version].md  # Output #3: Quality Validation Report
-├── seo-geo-recommendations-[version].md    # Output #4: SEO/GEO Recommendations
-└── audit-report-[version].md           # Quality Audit Report
-
-# Example:
-generated-outputs/
-├── release-notes-v2.5.md
-├── executive-summary-v2.5.md
-├── quality-validation-report-v2.5.md
-├── seo-geo-recommendations-v2.5.md
-└── audit-report-v2.5.md
+├── release-notes-v2.5.md               # Output #1: Release Notes
+├── executive-summary-v2.5.md           # Output #2: Executive Summary (100 words)
+├── quality-validation-report-v2.5.md   # Output #3: Quality Validation Report
+├── seo-geo-recommendations-v2.5.md     # Output #4: SEO/GEO Recommendations
+└── audit-report-v2.5.md                # Quality Audit Report
 ```
 
-**Naming Convention:** Replace `[version]` with your actual release version (e.g., v2.5, v3.0)
+**Fixed for v2.5:** All outputs are generated and saved with v2.5 version stamp.
 
 ---
 
