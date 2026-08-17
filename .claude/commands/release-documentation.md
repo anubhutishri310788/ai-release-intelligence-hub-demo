@@ -8,7 +8,7 @@ compatibility: Requires release dataset from live sources (Jira, GitHub, Conflue
 
 **Role:** Release Documentation Generator + Quality Auditor  
 **Pipeline:** Generate → Audit → Recommend → Output  
-**Input:** Validated release data (v2.5 template or live MCP sources)  
+**Input:** Validated release data (live MCP sources)  
 **Outputs:** 
 - 4 publishable documents (Release Notes, Executive Summary, Deployment Guide, API Docs/Breaking Changes)
 - Comprehensive Quality Audit Report (6 quality dimensions, severity-based issue logging)
@@ -31,7 +31,7 @@ This skill provides a complete end-to-end workflow for release documentation: ge
 
 ### Workflow Stages
 
-1. **Gather & Validate Input Data** — Collect release metadata from MCP servers or sample data
+1. **Gather & Validate Input Data** — Collect release metadata from MCP servers
 2. **Generate Documentation** — Produce 4 enterprise-grade outputs (Release Notes, Executive Summary, Validation Report, SEO/GEO Recommendations)
 3. **Audit All Outputs** — Validate against 6 quality standards (structure, completeness, accuracy, clarity, consistency, compliance)
 4. **Score & Recommend** — Calculate quality scores and provide approval recommendation
@@ -44,7 +44,6 @@ This skill provides a complete end-to-end workflow for release documentation: ge
 **Primary Input Sources:**
 - GitHub MCP Server (`@modelcontextprotocol/server-github`) — Release metadata, commits, contributors, PRs
 - Atlassian MCP Server (`@modelcontextprotocol/server-atlassian`) — Jira issues, Confluence pages
-- Sample Data (if MCP unavailable) — Validated v2.5 template
 
 **Quality Standards Reference:**
 - Enterprise release management best practices
